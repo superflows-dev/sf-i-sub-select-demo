@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>&lt;sf-i-sub-select&gt; Demo</title>
+        <!-- Integration material icons as they are used in sf-nav -->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <!-- Google fonts integration -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;300;400;600&display=swap" rel="stylesheet">
+        <!-- Add all the custom styling in this css file -->
+        <link rel="stylesheet" href="styles.css">
+        <script src="./util.js"></script>
+        <!-- Integration the web components module -->
+        <!-- Integration lit and sf-nav web components module -->
+        <script type="module">
+            import {LitElement, html, css} from 'https://unpkg.com/lit-element/lit-element.js?module';
+            import {SfISelect} from 'https://unpkg.com/sf-i-select@latest/sf-i-select.js?module';
+            import {SfISubSelect} from 'https://unpkg.com/sf-i-sub-select@latest/sf-i-sub-select.js?module';
+        </script>
+    </head>
+
+    <body>
+
+        <br /><br />
+        <div class="logo-container">
+            <a href="index.html"><img src="https://superflows-images.s3.ap-south-1.amazonaws.com/superflows_black_transparent_200.png" /></a>
+        </div>
+        <div class="logo-container">
+            <h1>MOD_NAME</h1>
+        </div>
+
+        <div class="logo-container">
+            <span class="badge">Sample Code</span>
+        </div>
+
+        <div class="ui-container user">
+            <div><h4>You are signed in as</h4></div>
+            <div><h2 class="user-email"></h2></div>
+            <button onclick="signOut()">Sign Out</button>
+            <br />
+            <br />
+        </div>
+
+        <div class="ui-container auth">
+            <div><h4>You are not signed in</h4></div>
+            <button onclick="signIn()">Sign In</button>
+        </div>
+
+        <div class="logo-container">
+            <div class="lc"></div>
+            <div class="grow">
+                <sf-i-sub-select apiId="SELECT_API_ID" name="MOD_NAME" label="Select Item" filterId="FOREIGN_KEY">
+                </sf-i-sub-select>
+            </div>
+            <div class="rc"></div>
+        </div>        
+
+        <div class="logo-container">
+            <div class="lc"></div>
+            <div class="grow text-right pr20">
+                <button class="admin" onclick="window.location.href='admin.html'">Admin Console</button>
+            </div>
+            <div class="rc"></div>
+        </div>
+        
+        <div class="info-container">
+
+            <h2>Purpose</h2>
+            The purpose of this sample code is to give you a boilerplate along with a ready-to-be-consumed integration with the select input supermod. This code uses two supermods - (1) sf-user-auth, which is the authentic supermod and (2) sf-i-select, which is the select input supermod. Please feel free to copy this code and use it in your app.
+
+            <h2>Code Structure</h2>
+            The code consists of the following files:
+
+            <h3>index.html</h3>
+            <ul>
+                <li>This file functions as the entry point of the sample app</li>
+                <li>It is simply a wrapper for the authentication and select input supermods</li>
+                <li>By default, the select input with values is shown</li>
+                <li>If the user is signed in, the sign in information is shown as well</li>
+                <li>If the signed in user is an administrator, a button to the admin console of the select input supermod is shown</li>
+                <li>If the user is not signed in, a link to the sign in page is shown</li>
+            </ul> 
+
+            <h3>auth.html</h3>
+            <ul>
+                <li>This file integrates the authentication supermod</li>
+                <li>It handles the sign in and sign out events as well</li>
+            </ul> 
+
+            <h3>admin.html</h3>
+            <ul>
+                <li>This file integrates the select input supermod in admin mode</li>
+            </ul> 
+    
+            <h3>styles.css</h3>
+            <ul>
+                <li>Custom css styles are specified in this css stylesheet</li>
+            </ul> 
+
+            <h3>util.js</h3>
+            <ul>
+                <li>This javascript file contains some simple utilities</li>
+            </ul> 
+
+            <h2>Resources</h2>
+
+            <h3>Superflows Console</h3>
+            <a href="https://superflows.dev">Sign In</a>
+
+            <h3>YouTube Channel</h3>
+            <a href="https://www.youtube.com/channel/UCYNJLCE48yir4DsquciBuDw">Subscribe</a>
+
+            <h3>Questions?</h3>
+            <a href="https://discord.gg/ksEXS4P9h6">Join the community</a>
+
+        </div>
+
+        <script>
+
+            function signOut() {
+                window.location.href = 'auth.html#auth/signout';
+            }
+
+            function signIn() {
+                window.location.href = 'auth.html#auth/signin';
+            }
+
+            function init() {
+
+                const email = readCookie('email');
+                const admin = readCookie('admin');
+
+                console.log(email, admin);
+                
+                if(email == null || email.length == 0) {
+
+                    console.log('email null',document.querySelector('.admin'));
+                    
+                    document.querySelector('.auth').style.display = 'flex';
+                    document.querySelector('.user').style.display = 'none';
+                    document.querySelector('.admin').style.display = 'none';
+                
+                } else {
+
+                    document.querySelector('.user-email').innerHTML = email;
+                    document.querySelector('.user').style.display = 'flex';
+                    document.querySelector('.auth').style.display = 'none';
+
+                    if(admin == "true") {
+
+                        document.querySelector('.admin').style.display = 'inline';
+
+                    } else {
+                        
+                        document.querySelector('.admin').style.display = 'none';
+
+                    }
+
+                }
+
+            }
+
+            init();
+
+        </script>
+
+    </body>
+  
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>&lt;sf-nav&gt; Demo</title>
+        <!-- Integration material icons as they are used in sf-nav -->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <!-- Google fonts integration -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;300;400;600&display=swap" rel="stylesheet">
+        <!-- Add all the custom styling in this css file -->
+        <link rel="stylesheet" href="styles.css">
+        <!-- Integration the web components module -->
+        <!-- Integration lit and sf-nav web components module -->
+        <script type="module">
+            import {LitElement, html, css} from 'https://unpkg.com/lit-element/lit-element.js?module';
+            import {SfISelect} from 'https://unpkg.com/sf-i-select/sf-i-select.js?module';
+        </script>
+    </head>
+
+    <body>
+
+        <br /><br />
+        <div class="logo-container">
+            <a href="index.html" class="link">Back</a>
+        </div>
+        <div class="logo-container">
+            <div class="grow">
+                <sf-i-sub-select apiId="SELECT_API_ID" name="MOD_NAME" mode="admin">
+                    <sf-i-select class="input-parent-select" slot="fk" apiId="PARENT_API_ID" name="PARENT_MOD_NAME" label="Select Parent Item"></sf-i-select>
+                </sf-i-sub-select>
+            </div>
+        </div>
+
+        
+
+    </body>
+  
+</html>
